@@ -302,56 +302,5 @@
         });
 
         const particles = [];
-        for (let i = 0; i < 35; i++) {
-            particles.push({
-                x: Math.random() * width,
-                y: Math.random() * height,
-                size: Math.random() * 8 + 3,
-                speedY: Math.random() * 1 + 0.3,
-                color: ['#f472b6', '#fb7185', '#c084fc', '#fbcfe8'][Math.floor(Math.random() * 4)],
-                opacity: Math.random() * 0.6 + 0.2
-            });
-        }
-
-        function animateParticles() {
-            ctx.clearRect(0, 0, width, height);
-            particles.forEach(p => {
-                p.y -= p.speedY;
-                if (p.y < -20) p.y = height + 20;
-                ctx.save();
-                ctx.globalAlpha = p.opacity;
-                ctx.fillStyle = p.color;
-                ctx.beginPath();
-                ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-                ctx.fill();
-                ctx.restore();
-            });
-            requestAnimationFrame(animateParticles);
-        }
-        animateParticles();
-
-        function blowCandles() {
-            document.getElementById('candleFlames').style.display = 'none';
-            confetti({ particleCount: 150, spread: 70, origin: { y: 0.6 } });
-        }
-
-        const audio = document.getElementById('bgMusic');
-        let isPlaying = true;
-        function toggleAudio() {
-            if (isPlaying) {
-                audio.pause();
-                document.getElementById('musicText').innerText = 'Play Music';
-                isPlaying = false;
-            } else {
-                audio.play();
-                document.getElementById('musicText').innerText = 'Pause Music';
-                isPlaying = true;
-            }
-        }
-
-        function openLetterModal() { document.getElementById('letterModal').classList.remove('hidden'); }
-        function closeLetterModal() { document.getElementById('letterModal').classList.add('hidden'); }
-    </script>
-</body>
-</html>
+        for (let i = 0; i < 
 
