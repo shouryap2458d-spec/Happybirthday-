@@ -225,7 +225,7 @@
             </div>
         </section>
 
-        <!-- PHOTO GALLERY -->
+        <!-- PHOTO GALLERY WITH YOUR NEW PHOTOS -->
         <section class="my-16">
             <div class="text-center mb-10">
                 <span class="text-pink-500 font-bold text-sm uppercase tracking-wider">Memories</span>
@@ -235,20 +235,21 @@
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 px-4">
                 <div class="polaroid rounded-lg">
                     <div class="h-64 bg-pink-100 rounded overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=600&q=80" class="w-full h-full object-cover">
+                        <img src="1000052883.jpg" class="w-full h-full object-cover">
                     </div>
                     <p class="text-center font-handwriting text-xl text-gray-700 mt-3 font-bold">Aesthetic Vibe ✨</p>
                 </div>
 
                 <div class="polaroid rounded-lg">
                     <div class="h-64 bg-pink-100 rounded overflow-hidden">
-                        <img src="IMG-20260801-WA0020.jpg" class="w-full h-full object-cover">
+                        <img src="1000052880.jpg" class="w-full h-full object-cover">
                     </div>
                     <p class="text-center font-handwriting text-xl text-gray-700 mt-3 font-bold">Always Smiling 😁</p>
                 </div>
+
                 <div class="polaroid rounded-lg">
                     <div class="h-64 bg-pink-100 rounded overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=600&q=80" class="w-full h-full object-cover">
+                        <img src="1000052893.jpg" class="w-full h-full object-cover">
                     </div>
                     <p class="text-center font-handwriting text-xl text-gray-700 mt-3 font-bold">18 & Fabulous 👑</p>
                 </div>
@@ -302,5 +303,55 @@
         });
 
         const particles = [];
-        for (let i = 0; i < 
+        for (let i = 0; i < 35; i++) {
+            particles.push({
+                x: Math.random() * width,
+                y: Math.random() * height,
+                size: Math.random() * 8 + 3,
+                speedY: Math.random() * 1 + 0.3,
+                color: ['#f472b6', '#fb7185', '#c084fc', '#fbcfe8'][Math.floor(Math.random() * 4)],
+                opacity: Math.random() * 0.6 + 0.2
+            });
+        }
 
+        function animateParticles() {
+            ctx.clearRect(0, 0, width, height);
+            particles.forEach(p => {
+                p.y -= p.speedY;
+                if (p.y < -20) p.y = height + 20;
+                ctx.save();
+                ctx.globalAlpha = p.opacity;
+                ctx.fillStyle = p.color;
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+                ctx.fill();
+                ctx.restore();
+            });
+            requestAnimationFrame(animateParticles);
+        }
+        animateParticles();
+
+        function blowCandles() {
+            document.getElementById('candleFlames').style.display = 'none';
+            confetti({ particleCount: 150, spread: 70, origin: { y: 0.6 } });
+        }
+
+        const audio = document.getElementById('bgMusic');
+        let isPlaying = true;
+        function toggleAudio() {
+            if (isPlaying) {
+                audio.pause();
+                document.getElementById('musicText').innerText = 'Play Music';
+                isPlaying = false;
+            } else {
+                audio.play();
+                document.getElementById('musicText').innerText = 'Pause Music';
+                isPlaying = true;
+            }
+        }
+
+        function openLetterModal() { document.getElementById('letterModal').classList.remove('hidden'); }
+        function closeLetterModal() { document.getElementById('letterModal').classList.add('hidden'); }
+    </script>
+</body>
+</html>
